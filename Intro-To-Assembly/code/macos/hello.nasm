@@ -4,15 +4,15 @@ str_len: equ $ - str
 
 section .text
 
-global _start
+global _main
 
-_start:
-  mov rax, 1
+_main:
+  mov rax, 0x2000004
   mov rdi, 1
   mov rdx, str_len
   mov rsi, str
   syscall
 
-  mov rax, 60
+  mov rax, 0x2000001
   mov rdi, 42
   syscall
