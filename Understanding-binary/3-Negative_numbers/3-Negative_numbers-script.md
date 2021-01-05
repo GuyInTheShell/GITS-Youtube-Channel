@@ -17,21 +17,21 @@ For the sake of simplicity, we won't work with full 8 bits but limit ourselves t
 our previous understanding that we can represent positive integers, with 3 bits, we can represent 2
 to the power of 3 = 8 values, that is to say numbers from 0 to 7.
 
-Now if we want those 8 values to represent signed integer rather, and if we want to keep it logical
-and symetrical, that is to say centered on 0, we can represent numbers from -3 to +3. That's 7
-numbers, so we can also represent either -4 or +4. We'll see later which one we'll get.
+Now if this time we want those 8 values to represent signed integer , and if we want to keep it
+logical and symetrical, that is to say centered on 0, we can represent numbers from -3 to +3. That's
+7 numbers, so we can also represent either -4 or +4. We'll see later which one we'll get.
 
-So it's symetrical, so half of the numbers represented by those 3 bits are positive and half are
+For it to be symetrical, half of the numbers represented by those 3 bits are positive and half are
 negative. A very simple way to represent the sign of the number could be to use the most significant
 bit. When 0, it's a positive number, when 1, a negative number.
 
-With this notation, we would have 0-00 to 0-11 representing 0 to 3.  
-Similarly we would have 1-00 to 1-11 representing 0 to -3.  
+With this notation, we would have 0-00 to 0-11 representing 0 to 3.
+Similarly we would have 1-00 to 1-11 representing 0 to -3.
 Note that this would logically mean 0 can be represented by 000 (+0) or 100 (-0), which is a bit of
 a waste.
 
-This convention would be very practical. As a human, I use the sign to determine the sign, and then
-I read the number with the rest of the bits. Easy.
+This convention would be very practical. As a human, I could use the first bit to determine the
+sign, and then I read the number with the rest of the bits. Easy.
 
 Unfortunately, this is not the one that is conventionally used. The reason for that, once again is
 math. It would be great that -1 + 1 = 0. But with the above convention -1 + 1 would be in binary 101
@@ -58,13 +58,15 @@ their most significant bit set to 1. And the value left, 100, starts with a 1. S
 it's equal to -4 rather than +4.
 
 So with respect to our original naive representation, what's cool is that the first bit still
-represent the sign as our intuition was suggesting. The rest of the bytes however are not easily
+represents the sign as our intuition was suggesting. The rest of the bytes however are not easily
 readable. To interpret a negative number, you have to take its two's complement.
+
+--- Interactive
 
 Before diving a little deeper on two's complements, let's first prove that what we just said is true
 and works as we think. For that, we can use Java. For a few years now, java comes with an
-interactive shell `jshell`. We'll use Java, because according to its documentation, the default
-primitive type to store integers is `int` which is a 32 bits signed integer.
+interactive shell called `jshell`. We'll use Java, because according to its documentation, the
+default primitive type to store integers is `int` which is a 32 bits signed integer.
 
 Let's open a shell. If we declare an `int` value that is equal to 1, we get 1. ok. Now let's define
 a variable that store the highest value possible in 32 bits. 32 bits is 4 bytes, which is 8
@@ -76,7 +78,7 @@ Ok let's find the middle now. According to our previous understanding, the bigge
 we can represent is the one that starts with a 0 and is followed by 31 ones. That means the first 4
 bits are 0111 which in hexadecimal is 0x7, while the rest are all ones, i.e. 0xF. The biggest number
 on 32 bits that start with the first bit set to 0 is therefore 0x7FFFFFFF. Using java, we can see
-this number is 2147483647. That makes sense. The next number (positive) would be in binary 1
+this number is 2,147,483,647. That makes sense. The next number (positive) would be in binary 1
 followed by 31 zeros. Therefore 1 times 2 to the power of 31. We can see that it's 2147483648, that
 is to say one more than the number we just got in the variable. The world still makes sense.
 
@@ -98,7 +100,7 @@ There are sereval algorithmic way to make that work. But we'll use the way that 
 logical and that is enough for us to play.
 
 First, there is an easy way. Let's use java. We just saw java uses signed integers. So given a
-binary value, say 0xA1234567, we put that into an `int` and get its value.  
+binary value, say 0xA1234567, we put that into an `int` and get its value.
 Conversely, given a negative `int`, we can ask for its binary value (in hexadecimal notation)
 through the `Integer.toHexString()` function. Pretty easy.
 
