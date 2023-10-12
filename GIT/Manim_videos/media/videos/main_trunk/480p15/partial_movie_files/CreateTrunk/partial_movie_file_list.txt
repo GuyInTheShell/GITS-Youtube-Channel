@@ -1,0 +1,3 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/gbataille/Documents/Prog/GITS/GITS-Youtube-Channel/GIT/Manim_videos/media/videos/main_trunk/480p15/partial_movie_files/CreateTrunk/901768268_4056367919_2358810818.mp4'
+file 'file:/Users/gbataille/Documents/Prog/GITS/GITS-Youtube-Channel/GIT/Manim_videos/media/videos/main_trunk/480p15/partial_movie_files/CreateTrunk/77316470_984129110_2835205697.mp4'
